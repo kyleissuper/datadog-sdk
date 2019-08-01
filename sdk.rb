@@ -45,9 +45,14 @@
   end,
   triggers: {
     new_event: {
+      help: 'Set up webhooks from <a href="https://app.datadoghq.com/account/settings#integrations/webhooks" target="_blank">webhooks configuration on Datadog</a>. Go to the <a href="https://www.workato.com/custom_adapters" target="_blank">SDK adapter page</a> for your static webhook URI. One custom "Workato-Key" header is required for each unique trigger you want to set up.',
       input_fields: lambda do |object_definitions|
         [
-          { name: "Workato-Key" }
+          {
+            name: "Workato-Key",
+            label: "Workato-Key",
+            optional: false
+          }
         ]
       end,
       webhook_key: lambda do |_connection, input|
