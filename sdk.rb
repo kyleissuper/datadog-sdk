@@ -59,6 +59,8 @@
         input["Workato-Key"]
       end,
       webhook_notification: lambda do |_connection, payload|
+        payload["date"] = (payload["date"].to_i / 1000).to_time
+        payload["last_updated"] = (payload["last_updated"].to_i / 1000).to_time
         payload
       end,
       dedup: lambda do |messages|
@@ -88,13 +90,13 @@
           {
             "control_type": "text",
             "label": "Date",
-            "type": "string",
+            "type": "date_time",
             "name": "date"
           },
           {
             "control_type": "text",
             "label": "Last updated",
-            "type": "string",
+            "type": "date_time",
             "name": "last_updated"
           },
           {
